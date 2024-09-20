@@ -1,24 +1,18 @@
+"""Let’s print a triangle made of asterisks (‘*’) separated by spaces and consisting
+of n rows again, but this time upside down, and make it symmetrical. Consecutive rows should
+contain 2n − 1, 2n − 3, . . . , 3, 1 asterisks and should be indented by 0, 2, 4, . . . , 2(n − 1)
+spaces. For example, for n = 4 the triangle should appear as follows:
+* * * * * * *
+  * * * * *
+    * * *
+      * 
 """
-Let’s print a triangle made of asterisks (‘*’) separated by spaces. The triangle
-should consist of n rows, where n is a given positive integer, and consecutive rows should
-contain 1, 2, . . . , n asterisks. For example, for n = 4 the triangle should appear as follows:
-"""
-
-# def triangle(n: int):
-#     for i in range(1, n + 1):
-#         for j in range(i):
-#             print("*", end="")
-#         print()
-
-#     return None
 
 
-# triangle(2)
+def triangle(n):
+    for i in range(n, 0, -1):
+        print(" " * (2 * (n - i)), end="")
+        print("* " * (2 * i - 1))
 
 
-def triangle(n: int):
-    for i in range(1, n + 1):
-        print("* " * i)
-
-
-triangle(5)
+triangle(4)
