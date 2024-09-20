@@ -4,14 +4,21 @@ should consist of n rows, where n is a given positive integer, and consecutive r
 contain 1, 2, . . . , n asterisks. For example, for n = 4 the triangle should appear as follows:
 """
 
+# def triangle(n: int):
+#     for i in range(1, n + 1):
+#         for j in range(i):
+#             print("*", end="")
+#         print()
+
+#     return None
+
+
+# triangle(2)
+
 
 def triangle(n: int):
     for i in range(1, n + 1):
-        for j in range(i):
-            print("*", end="")
-        print()
-
-    return None
+        print("* " * i)
 
 
-triangle(2)
+triangle(5)
