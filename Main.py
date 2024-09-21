@@ -1,36 +1,37 @@
-"""A small frog wants to get to the other side of the road. The frog is currently located at position X and wants to get to a position greater than or equal to Y. The small frog always jumps a fixed distance, D.
+"""An array A consisting of N different integers is given. The array contains integers in the range [1..(N + 1)], which means that exactly one element is missing.
 
-Count the minimal number of jumps that the small frog must perform to reach its target.
+Your goal is to find that missing element.
 
 Write a function:
 
-def solution(X, Y, D)
+def solution(A)
 
-that, given three integers X, Y and D, returns the minimal number of jumps from position X to a position equal to or greater than Y.
+that, given an array A, returns the value of the missing element.
 
-For example, given:
+For example, given array A such that:
 
-  X = 10
-  Y = 85
-  D = 30
-the function should return 3, because the frog will be positioned as follows:
-
-after the first jump, at position 10 + 30 = 40
-after the second jump, at position 10 + 30 + 30 = 70
-after the third jump, at position 10 + 30 + 30 + 30 = 100
+  A[0] = 2
+  A[1] = 3
+  A[2] = 1
+  A[3] = 5
+the function should return 4, as it is the missing element.
 Write an efficient algorithm for the following assumptions:
 
-X, Y and D are integers within the range [1..1,000,000,000];
-X ≤ Y.
+N is an integer within the range [0..100,000];
+the elements of A are all distinct;
+each element of array A is an integer within the range [1..(N + 1)].
 """
 
-import math
+from typing import List
 
 
-def solution(X: int, Y: int, D: int):
-    distance = abs(X - Y)
+def solution(A: List[int]) -> int:
+    sorted_A = sorted(A)
 
-    return math.ceil(distance / D)
+    for i, num in enumerate(sorted_A):
+        if i + 1 != num:
+            return i + 1
 
 
-print(solution(10, 85, 30))
+array = [1, 2, 3, 6, 8, 7, 5]
+print(solution(array))
