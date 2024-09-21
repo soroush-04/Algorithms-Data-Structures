@@ -44,13 +44,19 @@ import math
 
 
 def solution(A: List[int]):
-    all_min = sum(A)
+    sum_left = 0
+    sum_right = sum(A)
+    best_min = None
 
     for i in range(len(A) - 1):
-        temp_min = abs(sum(A[: i + 1]) - sum(A[i + 1 :]))
-        all_min = min(all_min, temp_min)
-
-    return all_min
+        sum_left += A[i]
+        sum_right -= A[i]
+        best_min = (
+            abs(sum_left - sum_right)
+            if best_min is None
+            else min(best_min, abs(sum_left - sum_right))
+        )
+    return best_min
 
 
 array = [3, 1, 2, 4, 3]
