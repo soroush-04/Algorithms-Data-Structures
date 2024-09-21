@@ -56,12 +56,21 @@ from typing import List
 
 def solution(N: int, A: List[int]):
     counter = [0] * N
+    total_max = 0
+    temp_max = 0
 
-    for i, value in enumerate(A):
-        if value <= N:
-            counter[value - 1] += 1
+    for num in A:
+        if num <= N:
+            if counter[num - 1] < temp_max:
+                counter[num - 1] = temp_max
+            counter[num - 1] += 1
+            total_max = max(counter[num - 1], total_max)
         else:
-            counter = [max(counter)] * N
+            temp_max = total_max
+
+    for i in range(N):
+        if counter[i] < temp_max:
+            counter[i] = temp_max
 
     return counter
 
