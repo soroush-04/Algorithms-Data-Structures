@@ -8,3 +8,4 @@
 
 ### Set()
 - Whenever we only care about uniqueness and a single occurence, consider using sets.
+- Converting the list to a set allows O(1) average time complexity for membership checks.

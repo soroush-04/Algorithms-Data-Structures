@@ -17,16 +17,13 @@ each element of array A is an integer within the range [−1,000,000..1,000,000]
 
 
 def solution(A):
+    seen = set(A)
     temp = 1
 
-    if max(A) < 1:
-        return 1
+    while temp in seen:
+        temp += 1
 
-    for num in sorted(A):
-        if num == temp:
-            temp += 1
-        elif num > temp:
-            return temp
+    return temp
 
 
 array = [1, 5, 3, 2, 8, 7, 0]
