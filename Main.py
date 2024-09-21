@@ -45,19 +45,13 @@ from typing import List
 
 
 def solution(X: int, A: List[int]):
-    timer = {}
-
-    if X not in set(A):
-        return -1
+    timer = set()
 
     for i in range(len(A)):
         if A[i] <= X:
-            if A[i] in timer:
-                timer[A[i]] += 1
-            else:
-                timer[A[i]] = 1
+            timer.add(A[i])
 
-        if len(timer.keys()) == X:
+        if len(timer) == X:
             return i
 
     return -1
