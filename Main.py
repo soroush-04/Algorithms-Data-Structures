@@ -1,58 +1,62 @@
-"""You are given a non-empty, zero-indexed array A of n (1 � n � 100 000) integers
-a0, a1, . . . , an−1 (0 � ai � 1 000). This array represents number of mushrooms growing on the
-consecutive spots along a road. You are also given integers k and m (0 � k, m < n).
-A mushroom picker is at spot number k on the road and should perform m moves. In
-one move she moves to an adjacent spot. She collects all the mushrooms growing on spots
-she visits. The goal is to calculate the maximum number of mushrooms that the mushroom
-picker can collect in m moves.
+"""A non-empty array A consisting of N integers is given. The consecutive elements of array A represent consecutive cars on a road.
+
+Array A contains only 0s and/or 1s:
+
+0 represents a car traveling east,
+1 represents a car traveling west.
+The goal is to count passing cars. We say that a pair of cars (P, Q), where 0 ≤ P < Q < N, is passing when P is traveling to the east and Q is traveling to the west.
+
 For example, consider array A such that:
-2 3 7 5 1 3 9
-0 1 2 3 4 5 6
-The mushroom picker starts at spot k = 4 and should perform m = 6 moves. She might
-move to spots 3, 2, 3, 4, 5, 6 and thereby collect 1 + 5 + 7 + 3 + 9 = 25 mushrooms. This is the
-maximal number of mushrooms she can collect."""
+
+  A[0] = 0
+  A[1] = 1
+  A[2] = 0
+  A[3] = 1
+  A[4] = 1
+We have five pairs of passing cars: (0, 1), (0, 3), (0, 4), (2, 3), (2, 4).
+
+Write a function:
+
+def solution(A)
+
+that, given a non-empty array A of N integers, returns the number of pairs of passing cars.
+
+The function should return −1 if the number of pairs of passing cars exceeds 1,000,000,000.
+
+For example, given:
+
+  A[0] = 0
+  A[1] = 1
+  A[2] = 0
+  A[3] = 1
+  A[4] = 1
+the function should return 5, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [1..100,000];
+each element of array A is an integer that can have one of the following values: 0, 1.
+Copyright 2009–2024 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.
+"""
 
 from typing import List
 
 
-def prefix_sums(A: List[int]) -> List[int]:
-    n = len(A)
-    P = [0] * n
-    P[0] = A[0]
+def solution(A: List[int]):
+    east_count = 0
+    passing_pairs = 0
 
-    for i in range(1, n):
-        P[i] = P[i - 1] + A[i]
+    for car in A:
+        if car == 0:
+            east_count += 1
+        elif car == 1:
+            passing_pairs += east_count
 
-    return P
+        if passing_pairs > 1e9:
+            return -1
 
-
-def count_total(pref: List[int], left: int, right: int) -> int:
-    if left > right:
-        return 0
-    return pref[right] - (pref[left - 1] if left > 0 else 0)
-
-
-def mushrooms(A: List[int], k: int, m: int) -> int:
-    n = len(A)
-    result = 0
-    pref = prefix_sums(A)
-
-    # Picking mushrooms from the left
-    for p in range(min(m, k) + 1):
-        left_pos = k - p
-        right_pos = min(n - 1, max(k, k + m - 2 * p))
-        result = max(result, count_total(pref, left_pos, right_pos))
-
-    # Picking mushrooms from the right
-    for p in range(min(m + 1, n - k)):
-        right_pos = k + p
-        left_pos = max(0, min(k, k - (m - 2 * p)))
-        result = max(result, count_total(pref, left_pos, right_pos))
-
-    return result
+    return passing_pairs
 
 
-A = [2, 3, 7, 5, 1, 3, 9]
-k = 4
-m = 6
-print(mushrooms(A, k, m))
+array = [0, 1, 0, 1, 1]
+print(solution(array))
