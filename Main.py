@@ -24,15 +24,13 @@ X, Y and D are integers within the range [1..1,000,000,000];
 X ≤ Y.
 """
 
+import math
+
 
 def solution(X: int, Y: int, D: int):
-    jump = 0
+    distance = abs(X - Y)
 
-    while X < Y:
-        X += D
-        jump += 1
-
-    return jump
+    return math.ceil(distance / D)
 
 
 print(solution(10, 85, 30))
