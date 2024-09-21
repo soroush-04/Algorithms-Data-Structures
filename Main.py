@@ -26,11 +26,9 @@ from typing import List
 
 
 def solution(A: List[int]) -> int:
-    sorted_A = sorted(A)
+    full_A = range(1, len(A) + 2)
 
-    for i, num in enumerate(sorted_A):
-        if i + 1 != num:
-            return i + 1
+    return sum(full_A) - sum(A)
 
 
 array = [1, 2, 3, 6, 8, 7, 5]
