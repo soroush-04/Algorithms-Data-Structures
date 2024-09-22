@@ -1,40 +1,146 @@
-"""A string S consisting of N characters is considered to be properly nested if any of the following conditions is true:
+# def solution(U, weight):
+#     current = [None, None]
+#     counter = 0
 
-S is empty;
-S has the form "(U)" or "[U]" or "{U}" where U is a properly nested string;
-S has the form "VW" where V and W are properly nested strings.
-For example, the string "{[()()]}" is properly nested but "([)()]" is not.
+#     for i in range(len(weight)):
+#         if current[0] == None:
+#             current[0] = weight[i]
+#         elif current[1] == None:
+#             current[1] = weight[i]
+#         else:
+#             current[0] = current[1]
+#             current[1] = weight[i]
 
-Write a function:
+#         if current[0] != None and current[1] != None:
+#             total_weight = current[0] + current[1]
+#         else:
+#             total_weight = current[0] or current[1]
 
-def solution(S)
+#         if total_weight > U:
+#             counter += 1
+#             current[1] = None
 
-that, given a string S consisting of N characters, returns 1 if S is properly nested and 0 otherwise.
+#     return counter
+# --------
 
-For example, given S = "{[()()]}", the function should return 1 and given S = "([)()]", the function should return 0, as explained above.
+# def solution(U, weight):
+#     counter = 0
+#     current = [None, None]
 
-Write an efficient algorithm for the following assumptions:
+#     for i in range(len(weight)):
+#         if current[0] is None:
+#             current[0] = weight[i]
+#         elif current[1] == None:
+#             current[1] = weight[i]
+#         else:
+#             current[0] = current[1]
+#             current[1] = weight[i]
 
-N is an integer within the range [0..200,000];
-string S is made only of the following characters: '(', '{', '[', ']', '}' and/or ')'.
-Copyright 2009–2024 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited."""
+#         total_weight = 0
+#         if current[0] != None:
+#             total_weight += current[0]
+#         if current[1] != None:
+#             total_weight += current[1]
+
+#         if total_weight > U:
+#             counter += 1
+#             current[1] = None
+
+#     return counter
+
+# ------
+
+# def solution(U, weight):
+#     counter = 0
+#     current = [None, None]
+#     n = len(weight)
+
+#     for i in range(n):
+#         if current[0] != None and current[1] != None:
+#             current[0] = current[1]
+#             current[1] = None
+
+#         if current[0] == None:
+#             current[0] = weight[i]
+#         elif current[1] == None:
+#             current[1] = weight[i]
+
+#         total_weight = 0
+#         if current[0] != None:
+#             total_weight += current[0]
+#         if current[1] != None:
+#             total_weight += current[1]
+
+#         #check weight
+#         if total_weight > U:
+#             counter += 1
+#             current[1] = None
+
+#     return counter
 
 
-def solution(S: str):
-    checklist = {")": "(", "}": "{", "]": "["}
-    stack = []
+# def solution(U, weight):
+#     counter = 0
+#     current = []
 
-    for char in S:
-        if char in checklist.values():
-            stack.append(char)
-        elif char in checklist.keys():
-            if stack and stack[-1] == checklist[char]:
-                stack.pop()
-            else:
-                return 0
+#     for w in weight:
+#         if len(current) < 2:
+#             current.append(w)
+#         else:
+#             current.pop(0)
+#             current.append(w)
 
-    return 1 if not stack else 0
+#         if sum(current) > U:
+#             counter += 1
+#             current.pop()
+
+#     return counter
+
+# if total_weight > U:
+#             counter += 1
+#             current.pop()
+#             if len(current) == 1:
+#                 current[0] = None
+
+#     current = [car for car in current if car is not None]
 
 
-print(solution("{[()()]}"))
-print(solution("([)()]"))
+# def solution(U, weight):
+#     counter = 0
+#     current = []
+
+#     for w in weight:
+#         if len(current) < 2:
+#             current.append(w)
+#         else:
+#             current.pop(0)
+#             current.append(w)
+
+#         if len(current) == 2 and sum(current) > U:
+#             counter += 1
+#             current.pop()
+
+#     return counter
+
+
+def solution(U, weight):
+    counter = 0
+    bridge = [None, None]
+
+    bridge[0], bridge[1] = weight[0], weight[1]
+    weight.pop()
+    weight.pop()
+
+    for i in range(len(weight)):
+        if weight[i] + bridge[1] < U:
+            bridge[0] = bridge[1]
+            bridge[1] = weight[i]
+        else:
+            counter += 1
+
+    return counter
+
+
+cars = [7, 6, 5, 2, 7, 4, 5, 4]
+U = 7
+print(solution(U, cars))
