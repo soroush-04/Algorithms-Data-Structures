@@ -1,146 +1,56 @@
-# def solution(U, weight):
-#     current = [None, None]
-#     counter = 0
+"""A non-empty array A consisting of N integers is given. The consecutive elements of array A represent consecutive cars on a road.
 
-#     for i in range(len(weight)):
-#         if current[0] == None:
-#             current[0] = weight[i]
-#         elif current[1] == None:
-#             current[1] = weight[i]
-#         else:
-#             current[0] = current[1]
-#             current[1] = weight[i]
+Array A contains only 0s and/or 1s:
 
-#         if current[0] != None and current[1] != None:
-#             total_weight = current[0] + current[1]
-#         else:
-#             total_weight = current[0] or current[1]
+0 represents a car traveling east,
+1 represents a car traveling west.
+The goal is to count passing cars. We say that a pair of cars (P, Q), where 0 ≤ P < Q < N, is passing when P is traveling to the east and Q is traveling to the west.
 
-#         if total_weight > U:
-#             counter += 1
-#             current[1] = None
+For example, consider array A such that:
 
-#     return counter
-# --------
+  A[0] = 0
+  A[1] = 1
+  A[2] = 0
+  A[3] = 1
+  A[4] = 1
+We have five pairs of passing cars: (0, 1), (0, 3), (0, 4), (2, 3), (2, 4).
 
-# def solution(U, weight):
-#     counter = 0
-#     current = [None, None]
+Write a function:
 
-#     for i in range(len(weight)):
-#         if current[0] is None:
-#             current[0] = weight[i]
-#         elif current[1] == None:
-#             current[1] = weight[i]
-#         else:
-#             current[0] = current[1]
-#             current[1] = weight[i]
+def solution(A)
 
-#         total_weight = 0
-#         if current[0] != None:
-#             total_weight += current[0]
-#         if current[1] != None:
-#             total_weight += current[1]
+that, given a non-empty array A of N integers, returns the number of pairs of passing cars.
 
-#         if total_weight > U:
-#             counter += 1
-#             current[1] = None
+The function should return −1 if the number of pairs of passing cars exceeds 1,000,000,000.
 
-#     return counter
+For example, given:
 
-# ------
+  A[0] = 0
+  A[1] = 1
+  A[2] = 0
+  A[3] = 1
+  A[4] = 1
+the function should return 5, as explained above.
 
-# def solution(U, weight):
-#     counter = 0
-#     current = [None, None]
-#     n = len(weight)
+Write an efficient algorithm for the following assumptions:
 
-#     for i in range(n):
-#         if current[0] != None and current[1] != None:
-#             current[0] = current[1]
-#             current[1] = None
+N is an integer within the range [1..100,000];
+each element of array A is an integer that can have one of the following values: 0, 1.
+Copyright 2009–2024 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited."""
 
-#         if current[0] == None:
-#             current[0] = weight[i]
-#         elif current[1] == None:
-#             current[1] = weight[i]
+from typing import List
 
-#         total_weight = 0
-#         if current[0] != None:
-#             total_weight += current[0]
-#         if current[1] != None:
-#             total_weight += current[1]
-
-#         #check weight
-#         if total_weight > U:
-#             counter += 1
-#             current[1] = None
-
-#     return counter
-
-
-# def solution(U, weight):
-#     counter = 0
-#     current = []
-
-#     for w in weight:
-#         if len(current) < 2:
-#             current.append(w)
-#         else:
-#             current.pop(0)
-#             current.append(w)
-
-#         if sum(current) > U:
-#             counter += 1
-#             current.pop()
-
-#     return counter
-
-# if total_weight > U:
-#             counter += 1
-#             current.pop()
-#             if len(current) == 1:
-#                 current[0] = None
-
-#     current = [car for car in current if car is not None]
-
-
-# def solution(U, weight):
-#     counter = 0
-#     current = []
-
-#     for w in weight:
-#         if len(current) < 2:
-#             current.append(w)
-#         else:
-#             current.pop(0)
-#             current.append(w)
-
-#         if len(current) == 2 and sum(current) > U:
-#             counter += 1
-#             current.pop()
-
-#     return counter
-
-
-def solution(U, weight):
+def solution(A: List[int]):
     counter = 0
-    bridge = [None, None]
-
-    bridge[0], bridge[1] = weight[0], weight[1]
-    weight.pop()
-    weight.pop()
-
-    for i in range(len(weight)):
-        if weight[i] + bridge[1] < U:
-            bridge[0] = bridge[1]
-            bridge[1] = weight[i]
-        else:
-            counter += 1
-
-    return counter
-
-
-cars = [7, 6, 5, 2, 7, 4, 5, 4]
-U = 7
-print(solution(U, cars))
+    multiplier = 0
+    
+    for num in A:
+        if num == 0:
+            multiplier += 1
+        if num == 1:
+            counter = multiplier + counter
+    
+    if counter > 1_000_000_000: #1,000,000,000
+        return -1
+    else: 
+        return counter
