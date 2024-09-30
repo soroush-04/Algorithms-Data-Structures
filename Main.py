@@ -1,81 +1,41 @@
-"""A DNA sequence can be represented as a string consisting of the letters A, C, G and T, which correspond to the types of successive nucleotides in the sequence. Each nucleotide has an impact factor, which is an integer. Nucleotides of types A, C, G and T have impact factors of 1, 2, 3 and 4, respectively. You are going to answer several queries of the form: What is the minimal impact factor of nucleotides contained in a particular part of the given DNA sequence?
+"""We draw N discs on a plane. The discs are numbered from 0 to N − 1. An array A of N non-negative integers, specifying the radiuses of the discs, is given. The J-th disc is drawn with its center at (J, 0) and radius A[J].
 
-The DNA sequence is given as a non-empty string S = S[0]S[1]...S[N-1] consisting of N characters. There are M queries, which are given in non-empty arrays P and Q, each consisting of M integers. The K-th query (0 ≤ K < M) requires you to find the minimal impact factor of nucleotides contained in the DNA sequence between positions P[K] and Q[K] (inclusive).
+We say that the J-th disc and K-th disc intersect if J ≠ K and the J-th and K-th discs have at least one common point (assuming that the discs contain their borders).
 
-For example, consider string S = CAGCCTA and arrays P, Q such that:
+The figure below shows discs drawn for N = 6 and A as follows:
 
-    P[0] = 2    Q[0] = 4
-    P[1] = 5    Q[1] = 5
-    P[2] = 0    Q[2] = 6
-The answers to these M = 3 queries are as follows:
+  A[0] = 1
+  A[1] = 5
+  A[2] = 2
+  A[3] = 1
+  A[4] = 4
+  A[5] = 0
 
-The part of the DNA between positions 2 and 4 contains nucleotides G and C (twice), whose impact factors are 3 and 2 respectively, so the answer is 2.
-The part between positions 5 and 5 contains a single nucleotide T, whose impact factor is 4, so the answer is 4.
-The part between positions 0 and 6 (the whole string) contains all nucleotides, in particular nucleotide A whose impact factor is 1, so the answer is 1.
+
+There are eleven (unordered) pairs of discs that intersect, namely:
+
+discs 1 and 4 intersect, and both intersect with all the other discs;
+disc 2 also intersects with discs 0 and 3.
 Write a function:
 
-def solution(S, P, Q)
+def solution(A)
 
-that, given a non-empty string S consisting of N characters and two non-empty arrays P and Q consisting of M integers, returns an array consisting of M integers specifying the consecutive answers to all queries.
+that, given an array A describing N discs as explained above, returns the number of (unordered) pairs of intersecting discs. The function should return −1 if the number of intersecting pairs exceeds 10,000,000.
 
-Result array should be returned as an array of integers.
-
-For example, given the string S = CAGCCTA and arrays P, Q such that:
-
-    P[0] = 2    Q[0] = 4
-    P[1] = 5    Q[1] = 5
-    P[2] = 0    Q[2] = 6
-the function should return the values [2, 4, 1], as explained above.
+Given array A shown above, the function should return 11, as explained above.
 
 Write an efficient algorithm for the following assumptions:
 
-N is an integer within the range [1..100,000];
-M is an integer within the range [1..50,000];
-each element of arrays P and Q is an integer within the range [0..N - 1];
-P[K] ≤ Q[K], where 0 ≤ K < M;
-string S consists only of upper-case English letters A, C, G, T.
+N is an integer within the range [0..100,000];
+each element of array A is an integer within the range [0..2,147,483,647].
 Copyright 2009–2024 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited."""
 
-from typing import List
-
-def solution(S: List[str], P: List[int], Q: List[int]):
-    n = len(S)
-
-    prefix_A = [0] * (n+1)
-    prefix_C = [0] * (n+1)
-    prefix_G = [0] * (n+1)
-    prefix_T = [0] * (n+1)
+def solution(A):
+    counter = 0
     
-    for i in range(n):
-        # Copy the previous values for all
-        prefix_A[i + 1] = prefix_A[i]
-        prefix_C[i + 1] = prefix_C[i]
-        prefix_G[i + 1] = prefix_G[i]
-        prefix_T[i + 1] = prefix_T[i]
-        
-        if S[i] == 'A':
-            prefix_A[i + 1] += 1
-        elif S[i] == 'C':
-            prefix_C[i + 1] += 1
-        elif S[i] == 'G':
-            prefix_G[i + 1] += 1
-        elif S[i] == 'T':
-            prefix_T[i + 1] += 1
-
-    # Answer each query in constant time
-    result = []
-    for i in range(len(P)):
-        start = P[i]
-        end = Q[i] + 1  # We add 1 because the prefix sum is 1-indexed
-        
-        # Check for the minimal impact factor in the range
-        if prefix_A[end] - prefix_A[start] > 0:
-            result.append(1)  # A is present
-        elif prefix_C[end] - prefix_C[start] > 0:
-            result.append(2)  # C is present
-        elif prefix_G[end] - prefix_G[start] > 0:
-            result.append(3)  # G is present
-        else:
-            result.append(4)  # Otherwise, T is present
-
-    return result
+    for i in range(len(A)):
+        for j in range(i+1, len(A)):
+            if i + A[i] >= j - A[j]:
+                counter += 1
+                
+    return counter
