@@ -1,58 +1,43 @@
-"""We are playing the Guess Game. The game is as follows:
+"""A peak element is an element that is strictly greater than its neighbors.
 
-I pick a number from 1 to n. You have to guess which number I picked.
+Given a 0-indexed integer array nums, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peaks.
 
-Every time you guess wrong, I will tell you whether the number I picked is higher or lower than your guess.
+You may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered to be strictly greater than a neighbor that is outside the array.
 
-You call a pre-defined API int guess(int num), which returns three possible results:
-
--1: Your guess is higher than the number I picked (i.e. num > pick).
-1: Your guess is lower than the number I picked (i.e. num < pick).
-0: your guess is equal to the number I picked (i.e. num == pick).
-Return the number that I picked.
+You must write an algorithm that runs in O(log n) time.
 
  
 
 Example 1:
 
-Input: n = 10, pick = 6
-Output: 6
+Input: nums = [1,2,3,1]
+Output: 2
+Explanation: 3 is a peak element and your function should return the index number 2.
 Example 2:
 
-Input: n = 1, pick = 1
-Output: 1
-Example 3:
-
-Input: n = 2, pick = 1
-Output: 1
+Input: nums = [1,2,1,3,5,6,4]
+Output: 5
+Explanation: Your function can return either index number 1 where the peak element is 2, or index number 5 where the peak element is 6.
  
 
 Constraints:
 
-1 <= n <= 231 - 1
-1 <= pick <= n"""
+1 <= nums.length <= 1000
+-231 <= nums[i] <= 231 - 1
+nums[i] != nums[i + 1] for all valid i."""
 
-# The guess API is already defined for you.
-# @param num, your guess
-# @return -1 if num is higher than the picked number
-#          1 if num is lower than the picked number
-#          otherwise return 0
-# def guess(num: int) -> int:
+from typing import List
 
 class Solution:
-    def guessNumber(self, n: int) -> int:
-        left = 1
-        
-        while left <= n:
-            my_guess = left + (n - left) // 2
-            check = guess(my_guess)
-            if check == 0:
-                return my_guess
-            elif check > 0:
-                left = my_guess + 1
-            else:
-                n = my_guess - 1
-        
-        
-                
+    def findPeakElement(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+
+        while left < right:
+            mid = (left + right) // 2
             
+            if nums[mid] < nums[mid + 1]:
+                left = mid + 1
+            else:
+                right = mid
+        
+        return left
