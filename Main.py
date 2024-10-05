@@ -1,3 +1,5 @@
+from typing import List
+
 
 class GraphPractice:
     def __init__(self, nodes) -> None:
@@ -12,6 +14,13 @@ class GraphPractice:
         self.adj_matrix[node1][node2] = 0
         self.adj_matrix[node2][node1] = 0
         
+    def dfs(self, start, visited: List[int]):
+        visited.append(start)
+        print(f"current node is {start}")
+        for i in range(self.nodes):
+            if self.adj_matrix[start][i] == 1 and i not in visited:
+                self.dfs(i, visited)
+        
     def display_graph(self):
         for i in range(self.nodes):
             for j in range(i+1, self.nodes):
@@ -25,8 +34,10 @@ class GraphPractice:
     
 graph1 = GraphPractice(5)
 graph1.display_matrix()
-
 graph1.add_edge(2, 4)
+graph1.add_edge(4, 0)
 graph1.display_matrix()
-
 graph1.display_graph()
+#test dfs
+visited_nodes = []
+graph1.dfs(0, visited_nodes)
