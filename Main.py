@@ -27,6 +27,22 @@ class Graph:
                 self.dfs_recursive(i, visited)
                 
     
+    def dfs_iterative_check_cycle(self, start, visited: List[int]):
+        stack =[(start, -1)]
+        
+        while stack:
+            current, parent = stack.pop()
+            visited.append(current)
+            
+            for i in range(self.nodes):
+                if self.adj_matrix[current][i] == 1:
+                    if i not in visited:
+                        stack.append((i, current))
+                    elif i != parent:
+                        return True
+        return False
+                
+    
     def count_component(self):
         counter = 0
         visited = []
@@ -54,12 +70,11 @@ class Graph:
     def check_valid_graph(self):
         visited = []
 
-        if self.count_component() == 1 and self.check_cycle(0, -1, visited) == 0 :
+        if self.count_component() == 1 and self.dfs_iterative_check_cycle(0, visited) == 0 :
             return True
         else:
             return False 
         
-
     
 
 graph1 = Graph(5)
