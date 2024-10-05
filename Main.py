@@ -1,12 +1,8 @@
-"""Graph Valid Tree
-Problem Summary
-A graph is a valid tree if:
-
-It is connected (there is a path between every pair of vertices).
-It contains no cycles.
+"""BFS traverse
 """
 
 from typing import List
+from collections import deque
 
 class Graph:
     def __init__(self, nodes) -> None:
@@ -98,6 +94,24 @@ class Graph:
         dfs_helper(start)
         return path if end in path else []
     
+    
+    def bfs_traverse(self, start):
+        queue = deque()
+        visited = []
+        
+        queue.append(start)
+        visited.append(start)
+        
+        while queue:
+            current = queue.popleft()
+            for i in range(self.nodes):
+                if self.adj_matrix[current][i] == 1 and i not in visited:
+                    queue.append(i)
+                    visited.append(i)
+        
+        return visited
+                
+    
 
 graph1 = Graph(5)
 graph1.add_edge(2, 0)
@@ -106,7 +120,7 @@ graph1.add_edge(4, 3)
 graph1.add_edge(1, 2)
 graph1.add_edge(1, 3)
 print(graph1.find_path(2, 4))
-
 print(graph1.check_valid_graph()) 
+print(graph1.bfs_traverse(1))
     
     
