@@ -74,15 +74,38 @@ class Graph:
             return True
         else:
             return False 
+    
+    
+    def find_path(self, start, end):
+        path = []
+        visited = []
+
+        def dfs_helper(current):
+            visited.append(current)
+            path.append(current)
+
+            if current == end:
+                return True
+            
+            for i in range(self.nodes):
+                if self.adj_matrix[current][i] == 1 and i not in visited:
+                    if dfs_helper(i):
+                        return True
+                
+            path.pop()
+            return False
         
+        dfs_helper(start)
+        return path if end in path else []
     
 
 graph1 = Graph(5)
 graph1.add_edge(2, 0)
 graph1.add_edge(2, 3)
-graph1.add_edge(4, 0)
+graph1.add_edge(4, 3)
 graph1.add_edge(1, 2)
 graph1.add_edge(1, 3)
+print(graph1.find_path(2, 4))
 
 print(graph1.check_valid_graph()) 
     
