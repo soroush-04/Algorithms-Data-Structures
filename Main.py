@@ -29,17 +29,20 @@ class GraphPractice:
         stack = []
         visited = []
 
-        stack.append(start)
+        stack.append((start, -1))
         visited.append(start)
 
         while stack:
-            current = stack.pop()
+            current, parent = stack.pop()
             print(f"current node is {current}")
 
             for i in range(self.nodes):
-                if self.adj_matrix[current][i] == 1 and i not in visited:
-                    stack.append(i)
-                    visited.append(i)
+                if self.adj_matrix[current][i] == 1:
+                    if i not in visited:
+                        stack.append((i, current))
+                        visited.append(i)
+                    elif i != parent:
+                        print(f"cycle detected at node {i}")
 
 
     def display_graph(self):
@@ -59,6 +62,7 @@ graph1 = GraphPractice(5)
 graph1.display_matrix()
 graph1.add_edge(2, 4)
 graph1.add_edge(4, 0)
+graph1.add_edge(2, 0)
 graph1.display_matrix()
 graph1.display_graph()
 # test dfs
