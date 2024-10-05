@@ -21,3 +21,9 @@
 
 ### Sliding Window
 - Consider using this technique when searching for specific subarrays or contiguous sequences.
+
+### BFS
+- Consider using it for shortest path in unweighted graphs.
+
+### DFS
+- Consider using it for backtracking scenarios.
