@@ -110,7 +110,33 @@ class Graph:
                     visited.append(i)
         
         return visited
-                
+    
+    def find_shortest_path(self, start, end):
+        queue = deque()
+        visited = []
+        path = {}
+        
+        queue.append(start)
+        visited.append(start)
+        path[start] = None
+
+        while queue:
+            current = queue.popleft()
+            
+            for i in range(self.nodes):
+                if self.adj_matrix[current][i] == 1 and i not in visited:
+                    queue.append(i)
+                    visited.append(i)
+                    path[i] = current
+
+                    if i == end:
+                        shortest_path = []
+                        while i is not None:
+                            shortest_path.append(i)
+                            i = path[i]
+                        return shortest_path[::-1]
+                    
+        return []
     
 
 graph1 = Graph(5)
@@ -122,5 +148,6 @@ graph1.add_edge(1, 3)
 print(graph1.find_path(2, 4))
 print(graph1.check_valid_graph()) 
 print(graph1.bfs_traverse(1))
+print(graph1.find_shortest_path(2, 4))
     
     
