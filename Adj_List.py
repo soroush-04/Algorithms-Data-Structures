@@ -12,10 +12,41 @@ class Graph_List:
     def display(self):
         for i in range(self.nodes):
             print(f"{i}: {self.adj_list[i]}")
+    
+    def dfs_recursive(self, start):
+        visited = []
+        
+        def helper(current):
+            visited.append(current)
             
+            for i in self.adj_list[current]:
+                if i not in visited:
+                    helper(i)
+            
+        helper(start)
+        return visited
+    
+    def dfs_iterative(self, start):
+        visited = []
+        stack = []
+        stack.append(start)
+
+        while stack:
+            current = stack.pop()
+
+            if current not in visited:
+                visited.append(current)
+                for neighbor in self.adj_list[current]:
+                    if neighbor not in visited:
+                        stack.append(neighbor)
+        
+        return visited
+    
 
 graph1 = Graph_List(5)
 graph1.add_edge(2, 4)
 graph1.add_edge(0, 3)
 graph1.add_edge(0, 2)
 graph1.display()
+print(graph1.dfs_recursive(3))
+print(graph1.dfs_iterative(2))
