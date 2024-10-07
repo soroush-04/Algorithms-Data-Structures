@@ -1,4 +1,5 @@
 from typing import List
+from collections import deque
 
 class Graph_List:
     def __init__(self, nodes) -> None:
@@ -42,6 +43,25 @@ class Graph_List:
         
         return visited
     
+    def bfs(self, start):
+        visited = []
+        queue = deque()
+        
+        queue.append(start)
+
+        while queue:
+            current = queue.popleft()
+            
+            if current not in visited:
+                visited.append(current)
+                
+                for neighbor in self.adj_list[current]:
+                    if neighbor not in visited:
+                        queue.append(neighbor)
+        
+        return visited
+            
+    
 
 graph1 = Graph_List(5)
 graph1.add_edge(2, 4)
@@ -50,3 +70,4 @@ graph1.add_edge(0, 2)
 graph1.display()
 print(graph1.dfs_recursive(3))
 print(graph1.dfs_iterative(2))
+print("BFS:", graph1.bfs(0))
