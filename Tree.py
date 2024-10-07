@@ -52,4 +52,4 @@ binary_tree.insert_node(7)
 binary_tree.insert_node(12)
 binary_tree.insert_node(18)
 
-binary_tree.print_tree(binary_tree(2))
+binary_tree.print_tree(binary_tree.root)
