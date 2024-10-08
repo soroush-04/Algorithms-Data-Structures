@@ -50,6 +50,26 @@ class BST:
         self.postorder_traversal(node.right)
         print(node.value)
     
+    def search(self, target, current = None):
+        if current is None:
+            current = self.root
+        
+        if current is None:
+            return None
+        
+        elif target == current.value:
+            return current
+
+        elif target < current.value:
+            if current.left is None:
+                return
+            return self.search(target, current.left)
+        
+        elif target > current.value:
+            if current.right is None:
+                return
+            return self.search(target, current.right)
+        
     
 bst = BST()
 test_case = [5, 3, 7, 2, 4, 6, 8]
@@ -63,3 +83,4 @@ print("\nIn-order Traversal:")
 bst.inorder_traversal(bst.root)
 print("\nPost-order Traversal:")
 bst.postorder_traversal(bst.root)
+print(bst.search(10))
