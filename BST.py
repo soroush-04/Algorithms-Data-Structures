@@ -72,33 +72,33 @@ class BST:
                 return
             return self.search(target, current.right)
     
-    def delete_bst(self, key, current = None):
-        if self.root is None:
-            return []
+    def delete_bst(self, key, current: Node = None):
+        if current is None:
+            current = self.root
         
-        current = self.root
+        if current is None:
+            return None #tree is empty
         
         if key < current.value:
-            result = self.search(key, current.left)
+            return self.delete_bst(key, current.left)
         elif key > current.value:
-            result = self.search(key, current.right)
-        
-        if result is None:
-            return self.inorder_traversal(self.root)
-        
-        if current.left is None and current.right is None:
-            current = None
-        elif current.left is None:
-            current = current.right
-        elif current.right is None:
-            current = current.left
+            return self.delete_bst(key, current.right)
         else:
-            if current.value < self.root.value:
-                current = current.right
-            else:
-                current = current.left
-        
-        return self.inorder_traversal(self.root)
+            if current.left is None:
+                return current.right
+            elif current.right is None:
+                return current.left
+            
+            temp = self._find_min(current.right)
+            current.value = temp.value
+            current.right = self.delete_bst(temp.value, current.right)
+        return current
+    
+    def _find_min(self, node: Node):
+        current = node
+        while current.left is not None:
+            current = current.left
+        return current
         
     
 bst = BST()
@@ -107,11 +107,13 @@ test_case = [5, 3, 7, 2, 4, 6, 8]
 for i in test_case:
     bst.insert_bst(i)
 
-# print("Pre-order Traversal:")
-# bst.preorder_traversal(bst.root)
-# print("\nIn-order Traversal:")
-# bst.inorder_traversal(bst.root)
-# print("\nPost-order Traversal:")
-# bst.postorder_traversal(bst.root)
-# print(bst.search(10))
+print("Pre-order Traversal:")
+bst.preorder_traversal(bst.root)
+print("\nIn-order Traversal:")
+bst.inorder_traversal(bst.root)
+print("\nPost-order Traversal:")
+bst.postorder_traversal(bst.root)
+print(bst.search(5))
 print(bst.delete_bst(3))
+print("\nIn-order Traversal:")
+bst.inorder_traversal(bst.root)
