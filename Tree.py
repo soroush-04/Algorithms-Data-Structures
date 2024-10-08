@@ -32,18 +32,37 @@ class BinaryTree:
                     return
                 
                 queue.append(current.right)
+    
+    def preorder_traversal(self, node: Node):
+        if node is None:
+            return
+        print(node.value)
+        self.preorder_traversal(node.left)
+        self.preorder_traversal(node.right)
+        
+    def inorder_traversal(self, node:Node):
+        if node is None:
+            return
+        self.inorder_traversal(node.left)
+        print(node.value)
+        self.inorder_traversal(node.right)
+
+    def postorder_traversal(self, node:Node):
+        if node is None:
+            return
+        self.postorder_traversal(node.left)
+        self.postorder_traversal(node.right)
+        print(node.value)
                 
-    def print_tree(self, node, level=0):
+    def print_tree(self, node: Node, level=0):
         if node is not None:
-            self.print_tree(node.right, level + 1)  # Print right subtree
-            print(' ' * 4 * level + '->', node.value)  # Print current node
+            self.print_tree(node.right, level + 1)
+            print(' ' * 4 * level + '->', node.value)
             self.print_tree(node.left, level + 1)
             
         
-# Create a binary tree instance
 binary_tree = BinaryTree()
 
-# Insert nodes
 binary_tree.insert_node(10)
 binary_tree.insert_node(5)
 binary_tree.insert_node(15)
@@ -52,4 +71,9 @@ binary_tree.insert_node(7)
 binary_tree.insert_node(12)
 binary_tree.insert_node(18)
 
-binary_tree.print_tree(binary_tree.root)
+print("Pre-order Traversal:")
+binary_tree.preorder_traversal(binary_tree.root)
+print("In order Traversal:")
+binary_tree.inorder_traversal(binary_tree.root)
+print("Post order Traversal:")
+binary_tree.postorder_traversal(binary_tree.root)
