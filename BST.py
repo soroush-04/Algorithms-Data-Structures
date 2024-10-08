@@ -29,3 +29,37 @@ class BST:
             else:
                 self._insert_bst(current.right, new_node)
     
+    def preorder_traversal(self, node: Node):
+        if node is None:
+            return
+        print(node.value)
+        self.preorder_traversal(node.left)
+        self.preorder_traversal(node.right)
+    
+    def inorder_traversal(self, node: Node):
+        if node is None:
+            return
+        self.inorder_traversal(node.left)
+        print(node.value)
+        self.inorder_traversal(node.right)
+    
+    def postorder_traversal(self, node: Node):
+        if node is None:
+            return
+        self.postorder_traversal(node.left)
+        self.postorder_traversal(node.right)
+        print(node.value)
+    
+    
+bst = BST()
+test_case = [5, 3, 7, 2, 4, 6, 8]
+
+for i in test_case:
+    bst.insert_bst(i)
+
+print("Pre-order Traversal:")
+bst.preorder_traversal(bst.root)
+print("\nIn-order Traversal:")
+bst.inorder_traversal(bst.root)
+print("\nPost-order Traversal:")
+bst.postorder_traversal(bst.root)
