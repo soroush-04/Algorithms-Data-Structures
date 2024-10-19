@@ -3,17 +3,21 @@ class Stack:
         self.stack = []
         self.min_stack = []
         self.max_stack = []
+    
+    def __iter__(self):
+        return iter(self.stack)
 
     def push(self, value):
         if isinstance(value, list):
             for i in value:
                 self.push(i)
-                
-        self.stack.append(value)
-        if not self.min_stack or value <= self.min_stack[-1]:
-            self.min_stack.append(value)
-        if not self.max_stack or value >= self.max_stack[-1]:
-            self.max_stack.append(value)
+        
+        else:
+            self.stack.append(value)
+            if not self.min_stack or value <= self.min_stack[-1]:
+                self.min_stack.append(value)
+            if not self.max_stack or value >= self.max_stack[-1]:
+                self.max_stack.append(value)
         
     def pop(self):
         if self.isEmpty():
@@ -41,9 +45,13 @@ class Stack:
     def isEmpty(self):
         return len(self.stack) == 0
     
+    
 stack = Stack()
 print(stack.isEmpty())
 stack.push([1,2,3])
 print(stack.peek())
 stack.pop()
 print(stack.peek())
+    
+for item in stack:  # This will raise a TypeError
+    print(item)
