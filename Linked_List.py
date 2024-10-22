@@ -98,6 +98,18 @@ class LinkedList:
             i += 1
         
         print(f"index {index} is out of bound")
+
+    def reverse(self):
+        prev = None
+        current = self.head
+        
+        while current:
+            next_temp = current.next
+            current.next = prev
+            prev = current
+            current = next_temp
+        
+        self.head = prev
     
     def traverse(self):
         current = self.head
@@ -114,4 +126,6 @@ ll.insert_at_position(3, 2)
 ll.insert_at_beginning(7)
 ll.insert_at_beginning(18)
 ll.delete_by_index(0)
+ll.traverse()
+ll.reverse()
 ll.traverse()
