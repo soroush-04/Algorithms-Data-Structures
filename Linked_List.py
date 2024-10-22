@@ -120,6 +120,18 @@ class LinkedList:
             return _reverse_recursive(next_temp, current)
         
         self.head = _reverse_recursive(self.head, None)
+        
+    def cycle_detection(self):
+        slow = self.head
+        fast = self.head
+        
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return print("Cycle detected!")
+            
+        print("No cycle detected")
     
     def traverse(self):
         current = self.head
@@ -141,3 +153,6 @@ ll.reverse()
 ll.traverse()
 ll.reverse_recursive()
 ll.traverse()
+ll.cycle_detection()
+ll.head.next.next = ll.head.next
+ll.cycle_detection()
