@@ -41,6 +41,41 @@ class LinkedList:
             i += 1
         
         print("index out of bound")
+        
+    def delete_first_occurence(self, value):
+        if self.head is None:
+            return print("linked list is empty")
+        
+        if self.head.value == value:
+            self.head = self.head.next
+            return
+        
+        current = self.head
+        prev = None
+        
+        while current:
+            if current.value == value:
+                prev.next = current.next
+                return
+            prev = current
+            current = current.next
+            
+    def delete_all_occurence(self, value):
+        if self.head is None:
+            return print("linked list is empty")
+        
+        while self.head.value == value and self.head is not None:
+            self.head = self.head.next
+        
+        current = self.head
+        prev = None
+        
+        while current:
+            if current.value == value:
+                prev.next = current.next
+            else:
+                prev = current
+            current = current.next
     
     def traverse(self):
         current = self.head
@@ -54,5 +89,7 @@ ll = LinkedList()
 ll.insert_at_end(4)
 ll.insert_at_position(3, 0)
 ll.insert_at_position(3, 2)
-ll.insert_at_position(3, 10)
+ll.insert_at_beginning(7)
+ll.insert_at_beginning(7)
+ll.delete_all_occurence(3)
 ll.traverse()
