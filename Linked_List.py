@@ -111,6 +111,16 @@ class LinkedList:
         
         self.head = prev
     
+    def reverse_recursive(self):
+        def _reverse_recursive(current: Node, prev):
+            if current is None:
+                return prev
+            next_temp = current.next 
+            current.next = prev
+            return _reverse_recursive(next_temp, current)
+        
+        self.head = _reverse_recursive(self.head, None)
+    
     def traverse(self):
         current = self.head
         while current is not None:
@@ -125,7 +135,9 @@ ll.insert_at_position(3, 0)
 ll.insert_at_position(3, 2)
 ll.insert_at_beginning(7)
 ll.insert_at_beginning(18)
-ll.delete_by_index(0)
+# ll.delete_by_index(0)
 ll.traverse()
 ll.reverse()
+ll.traverse()
+ll.reverse_recursive()
 ll.traverse()
