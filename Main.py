@@ -1,50 +1,42 @@
-"""Given a string s, reverse only all the vowels in the string and return it.
-
-The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+"""Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
 
  
 
 Example 1:
 
-Input: s = "IceCreAm"
-
-Output: "AceCreIm"
-
-Explanation:
-
-The vowels in s are ['I', 'e', 'e', 'A']. On reversing the vowels, s becomes "AceCreIm".
-
+Input: arr = [1,2,2,1,1,3]
+Output: true
+Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
 Example 2:
 
-Input: s = "leetcode"
+Input: arr = [1,2]
+Output: false
+Example 3:
 
-Output: "leotcede"
-
+Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
+Output: true
  
 
 Constraints:
 
-1 <= s.length <= 3 * 105
-s consist of printable ASCII characters."""
+1 <= arr.length <= 1000
+-1000 <= arr[i] <= 1000"""
 
 from typing import List
 
 class Solution:
-    def reverseVowels(self, s: str) -> str:
-        vowels = set('aeiouAEIOU')
-        left, right = 0, len(s) - 1
-        s_list = list(s)
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        seen = {}
 
-        while left < right:
-            while left < right and s_list[left] not in vowels:
-                left += 1
-            while left < right and s_list[right] not in vowels:
-                right -= 1
-            
-            if left < right:
-                s_list[left], s_list[right] = s_list[right], s_list[left]
-                left += 1
-                right -= 1
+        for i in range(len(arr)):
+            if arr[i] not in seen:
+                seen[arr[i]] = 0
+                continue
+            seen[arr[i]] += 1
         
-        return ''.join(s_list)
-
+        list = seen.values()
+        if len(list) == len(set(list)):
+            return True
+        else:
+            return False
+                
