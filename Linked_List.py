@@ -13,12 +13,14 @@ class LinkedList:
         self.head = new_node
         
     def traverse(self):
-        while self.head is not None:
-            print(self.head.value, end=" -> ")
-            self.head = self.head.next
+        current = self.head
+        while current is not None:
+            print(current.value, end=" -> ")
+            current = current.next
         print("None")
 
 
 ll = LinkedList()
 ll.insert_at_beginning(2)
+ll.insert_at_beginning(4)
 ll.traverse()
