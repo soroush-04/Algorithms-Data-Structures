@@ -27,3 +27,7 @@
 
 ### DFS
 - Consider using it for backtracking scenarios.
+
+### Nested Data
+- **Hashmaps**: Use `.items()` to iterate through key-value pairs and use the value to move one layer inward. 
+- **Lists**: Use `item in items` to move one layer inward.
