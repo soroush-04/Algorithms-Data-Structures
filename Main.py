@@ -1,12 +1,28 @@
-"""Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct."""
+"""Given two strings s and t, return true if t is an 
+anagram
+ of s, and false otherwise."""
 
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
+    def isAnagram(self, s: str, t: str) -> bool:
 
-        nums2 = set(nums)
-
-        if len(nums) == len(nums2):
+        if len(s) != len(t):
             return False
-        else:
-            return True
         
+        checklist = {}
+
+        for i in s:
+            if i in checklist:
+                checklist[i] += 1
+            else:
+                checklist[i] = 1
+        
+        for i in t:
+            if i in checklist:
+                if checklist[i] == 0:
+                    return False
+                else:
+                    checklist[i] -= 1
+            else:
+                return False
+        
+        return True
