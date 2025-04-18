@@ -7,6 +7,9 @@
   - Technique: Prefix Sums, Two Pointers, Sliding Window | [Code Link](https://github.com/soroush-04/Algorithms-DS/commit/a0d98aaf3dd05eae152d93a32d31836036871d7c)
 - **Graph Valid Tree**
   - Technique: DFS, Cycle Checking, Connectivity Check | [Code Link](https://github.com/soroush-04/Algorithms-DS/commit/ea384f78d6560cc8b4b2e4e3a89144e57ce9c166)
+- **N-Queens**
+  - Technique: Backtracking | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/n_queens.py)
+
 
 
 ## Common mistakes
@@ -31,3 +34,8 @@
 ### Nested Data
 - **Hashmaps**: Use `.items()` to iterate through key-value pairs and use the value to move one layer inward. 
 - **Lists**: Use `item in items` to move one layer inward.
+
+### Backtracking
+- Don’t forget to undo (backtrack) changes after recursive calls.
+- Recursion base case must be created accuractely.
+- Don't forget to call the backtracking function at the end!
