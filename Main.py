@@ -8,54 +8,31 @@ Each solution contains a distinct board configuration of the n-queens' placement
 
 """
 
-from typing import List
-
 
 class Solution:
-    def solveNQueens(self, n: int) -> List[List[str]]:
-        result = []
+    def fib(self, n: int) -> int:
+        dp = [0, 1]
 
-        def backtrack(
-            row: int,
-            queens: List[int],
-            diagonal_main: set,
-            diagonal_anti: set,
-            queens_column: set,
-        ):
-            # base case start
-            if row == n:
-                board = []
-                for q in queens:
-                    board_row = "." * q + "Q" + (n - q - 1) * "."
-                    board.append(board_row)
-                result.append(board)
-                return
+        if n == 0:
+            return 0
+        if n == 1:
+            return 1
 
-            for col in range(n):
-                if is_safe(row, col, diagonal_main, diagonal_anti, queens_column):
-                    queens.append(col)
-                    queens_column.add(col)
-                    diagonal_main.add(row - col)
-                    diagonal_anti.add(row + col)
+        for _ in range(2, n + 1):
+            temp = dp[0]
+            dp[0] = dp[1]
+            dp[1] = temp + dp[0]
 
-                    backtrack(
-                        row + 1, queens, diagonal_main, diagonal_anti, queens_column
-                    )
+        return dp[1]
 
-                    queens.pop()
-                    queens_column.remove(col)
-                    diagonal_main.remove(row - col)
-                    diagonal_anti.remove(row + col)
 
-        def is_safe(row, col, diagonal_main, diagonal_anti, queens_column):
-            if col in queens_column:
-                return False
-            if (row - col) in diagonal_main:
-                return False
-            if (row + col) in diagonal_anti:
-                return False
-            return True
+test = Solution()
+print(test.fib(8))
 
-        # NEVER FORGET TO CALL THE BACKTRACK FUNCTION!!
-        backtrack(0, [], set(), set(), set())
-        return result
+"""
+n = 3
+0   1
+temp 0
+1
+
+"""
