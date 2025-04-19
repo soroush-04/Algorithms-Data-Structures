@@ -1,38 +1,24 @@
-# n-queen problem
 """
-The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.
+climbing stairs
 
-Given an integer n, return all distinct solutions to the n-queens puzzle. You may return the answer in any order.
-
-Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space, respectively.
-
+You are climbing a staircase. It takes n steps to reach the top.
+Each time you can either climb 1 or 2 steps.
+how many distinct ways can you climb to the top?
 """
 
 
 class Solution:
-    def fib(self, n: int) -> int:
-        dp = [0, 1]
+    def climb_stairs(self, n: int) -> int:
+        a, b = 1, 2
 
-        if n == 0:
-            return 0
         if n == 1:
             return 1
 
-        for _ in range(2, n + 1):
-            temp = dp[0]
-            dp[0] = dp[1]
-            dp[1] = temp + dp[0]
+        for _ in range(2, n):
+            a, b = b, a + b
 
-        return dp[1]
+        return b
 
 
 test = Solution()
-print(test.fib(8))
-
-"""
-n = 3
-0   1
-temp 0
-1
-
-"""
+print(test.climb_stairs(5))

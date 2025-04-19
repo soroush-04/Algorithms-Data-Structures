@@ -39,3 +39,6 @@
 - Don’t forget to undo (backtrack) changes after recursive calls.
 - Recursion base case must be created accuractely.
 - Don't forget to call the backtracking function at the end!
+
+### Dynamic Programming
+- Check for fibonnaci patterns
