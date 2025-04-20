@@ -1,21 +1,17 @@
 """
-Coin Change
+Min Cost Climbing Stairs
 """
 
 from typing import List
 
 
 class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int:
-        dp = [float("inf")] * (amount + 1)
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        dp = [float("inf")] * (len(cost) + 1)
         dp[0] = 0
+        dp[1] = 0
 
-        for i in range(1, amount + 1):
-            for coin in coins:
-                if i - coin >= 0:
-                    dp[i] = min(dp[i], dp[i - coin] + 1)
+        for i in range(2, len(cost) + 1):
+            dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2])
 
-        if dp[amount] == float("inf"):
-            return -1
-        else:
-            return dp[amount]
+        return dp[len(cost)]
