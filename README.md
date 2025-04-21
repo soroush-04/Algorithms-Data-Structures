@@ -9,6 +9,8 @@
   - Technique: DFS, Cycle Checking, Connectivity Check | [Code Link](https://github.com/soroush-04/Algorithms-DS/commit/ea384f78d6560cc8b4b2e4e3a89144e57ce9c166)
 - **N-Queens**
   - Technique: Backtracking | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/n_queens.py)
+- **Top K Frequent Elements**
+  - Technique: Bucket Sort | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/top_k_frequency.py)
 
 
 
@@ -24,6 +26,11 @@
 
 ### Sliding Window
 - Consider using this technique when searching for specific subarrays or contiguous sequences.
+
+### Bucket Sort
+- Optimize the time complexity to O(N).
+- It is a 2D array,
+- We kinda try to swap and redesign the key-values of frequency hashmap.
 
 ### BFS
 - Consider using it for shortest path in unweighted graphs.
