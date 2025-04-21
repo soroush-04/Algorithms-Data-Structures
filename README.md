@@ -49,3 +49,8 @@
 
 ### Dynamic Programming
 - Check for fibonnaci patterns
+
+### Bit Manipulation
+- Logical and returns the first falsy value or the last value if all are truthy.
+- Logical or returns the first truthy value.
+- XOR: like a toggle switch to add/remove features. Also keep in mind XOR of two same numbers is zero.

@@ -1,23 +1,33 @@
 """
-Top K Frequent Elements
+Number of 1 Bits
 """
 
 from typing import List
 
 
+# class Solution:
+#     def hammingWeight(self, n: int) -> int:
+#         bin_n = bin(n)[2:]
+#         hamming_weight = 0
+
+#         for i in bin_n:
+#             if i == '1':
+#                 hamming_weight += 1
+
+#         return hamming_weight
+
+
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freq_map = {}
-        for num in nums:
-            freq_map[num] = freq_map.get(num, 0) + 1
+    def hammingWeight(self, n: int) -> int:
+        sum = 0
 
-        bucket = [[] for _ in range(len(nums) + 1)]
-        for num, freq in freq_map.items():
-            bucket[freq].append(num)
+        while n:
+            if n & 1:
+                sum += 1
+            n >>= 1
 
-        res = []
-        for i in range(len(bucket) - 1, 0, -1):
-            for num in bucket[i]:
-                res.append(num)
-                if len(res) == k:
-                    return res
+        return sum
+
+
+test = Solution()
+print(test.hammingWeight(5))
