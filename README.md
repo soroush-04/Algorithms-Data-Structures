@@ -11,6 +11,8 @@
   - Technique: Backtracking | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/n_queens.py)
 - **Top K Frequent Elements**
   - Technique: Bucket Sort | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/top_k_frequency.py)
+- **Counting Bits**
+  - Technique: Bit Manipulation, Dynamic Programming | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/counting_bits.py)
 
 
 
@@ -54,3 +56,4 @@
 - Logical and returns the first falsy value or the last value if all are truthy.
 - Logical or returns the first truthy value.
 - XOR: like a toggle switch to add/remove features. Also keep in mind XOR of two same numbers is zero.
+- Check LSB (least significant bit) with 'i & 1'  or 'i % 2'
