@@ -34,6 +34,9 @@
 - It is a 2D array,
 - We kinda try to swap and redesign the key-values of frequency hashmap.
 
+### Trees
+- In BST do not traverse the wrong subtree!
+
 ### BFS
 - Consider using it for shortest path in unweighted graphs.
 
