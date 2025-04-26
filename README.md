@@ -13,6 +13,8 @@
   - Technique: Bucket Sort | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/top_k_frequency.py)
 - **Counting Bits**
   - Technique: Bit Manipulation, Dynamic Programming | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/counting_bits.py)
+- **Subtree of Another Tree**
+  - Technique: Tree Traversal, Recursion | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/subtree.py)
 
 
 
