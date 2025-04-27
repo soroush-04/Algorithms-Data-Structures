@@ -33,6 +33,9 @@
 ### Sliding Window
 - Consider using this technique when searching for specific subarrays or contiguous sequences.
 
+### Sorting
+- Merge Sort has guaranteed O(n log n) time complexity, which can be preferable when the worst case is a concern.
+
 ### Bucket Sort
 - Optimize the time complexity to O(N).
 - It is a 2D array,
