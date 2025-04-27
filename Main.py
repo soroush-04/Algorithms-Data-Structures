@@ -1,5 +1,13 @@
 """
-Invert Binary Tree
+Diameter of Binary Tree
+
+        1
+       / \
+      2   3
+     / \
+    4   5
+
+
 """
 
 from typing import List, Optional
@@ -12,14 +20,34 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
-            return None
+class Tree:
+    def __init__(self):
+        self.root = None
 
-        root.left, root.right = root.right, root.left
+    def calculate_max_diameter(self):
+        self.diameter = 0
 
-        self.invertTree(root.left)
-        self.invertTree(root.right)
+        def dfs(node):
+            if not node:
+                return 0
 
-        return root
+            letf_height = dfs(node.left)
+            right_height = dfs(node.right)
+
+            self.diameter = max(self.diameter, letf_height + right_height)
+
+            return max(letf_height, right_height) + 1
+
+        dfs(self.root)
+
+        return self.diameter
+
+
+tree = Tree()
+tree.root = TreeNode(1)
+tree.root.left = TreeNode(2)
+tree.root.right = TreeNode(3)
+tree.root.left.left = TreeNode(4)
+tree.root.left.right = TreeNode(5)
+
+print(tree.calculate_max_diameter())
