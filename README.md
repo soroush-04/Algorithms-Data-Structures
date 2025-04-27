@@ -15,6 +15,8 @@
   - Technique: Bit Manipulation, Dynamic Programming | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/counting_bits.py)
 - **Subtree of Another Tree**
   - Technique: Tree Traversal, Recursion | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/subtree.py)
+- **Balanced Binary Tree**
+  - Technique: DFS, Height Calculation | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/balanced_binary_tree.py)
 
 
 
@@ -38,6 +40,7 @@
 
 ### Trees
 - In BST do not traverse the wrong subtree!
+- Don't forget to propagate the state of unbalanced subtrees up the tree.
 
 ### BFS
 - Consider using it for shortest path in unweighted graphs.
