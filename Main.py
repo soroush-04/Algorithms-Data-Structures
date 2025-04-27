@@ -1,53 +1,39 @@
 """
-Diameter of Binary Tree
+Happy Number
+Write an algorithm to determine if a number n is happy.
 
-        1
-       / \
-      2   3
-     / \
-    4   5
+A happy number is a number defined by the following process:
 
-
+Starting with any positive integer, replace the number by the sum of the squares of its digits.
+Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+Those numbers for which this process ends in 1 are happy.
+Return true if n is a happy number, and false if not.
 """
 
 from typing import List, Optional
 
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+def happy_number(n: int) -> bool:
+    def check_next(next):
+        sum_digits = 0
+
+        while next > 0:
+            digit = next % 10
+            sum_digits += digit**2
+            next //= 10
+
+        return sum_digits
+
+    seen = set()
+
+    while True:
+        if n == 1:
+            return print(True)
+        if n in seen:
+            return print(False)
+
+        seen.add(n)
+        n = check_next(n)
 
 
-class Tree:
-    def __init__(self):
-        self.root = None
-
-    def calculate_max_diameter(self):
-        self.diameter = 0
-
-        def dfs(node: TreeNode):
-            if not node:
-                return 0
-
-            letf_height = dfs(node.left)
-            right_height = dfs(node.right)
-
-            self.diameter = max(self.diameter, letf_height + right_height)
-
-            return max(letf_height, right_height) + 1
-
-        dfs(self.root)
-
-        return self.diameter
-
-
-tree = Tree()
-tree.root = TreeNode(1)
-tree.root.left = TreeNode(2)
-tree.root.right = TreeNode(3)
-tree.root.left.left = TreeNode(4)
-tree.root.left.right = TreeNode(5)
-
-print(tree.calculate_max_diameter())
+happy_number(19)
