@@ -1,39 +1,34 @@
 """
-Happy Number
-Write an algorithm to determine if a number n is happy.
+Meeting Rooms
+Given an array of meeting time interval objects consisting of start and end times [[start_1,end_1],[start_2,end_2],...] (start_i < end_i), determine if a person could add all meetings to their schedule without any conflicts.
 
-A happy number is a number defined by the following process:
+Example 1:
 
-Starting with any positive integer, replace the number by the sum of the squares of its digits.
-Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
-Those numbers for which this process ends in 1 are happy.
-Return true if n is a happy number, and false if not.
+Input: intervals = [(0,30),(5,10),(15,20)]
+
+Output: false
 """
 
+from __future__ import annotations
 from typing import List, Optional
 
 
-def happy_number(n: int) -> bool:
-    def check_next(next):
-        sum_digits = 0
+class Interval:
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
 
-        while next > 0:
-            digit = next % 10
-            sum_digits += digit**2
-            next //= 10
+    def canAttendMeetings(self, intervals: List[Interval]) -> bool:
+        intervals.sort(key=lambda x: x.start)
 
-        return sum_digits
+        for i in range(1, len(intervals)):
+            if intervals[i].start < intervals[i - 1].end:
+                return False
 
-    seen = set()
-
-    while True:
-        if n == 1:
-            return print(True)
-        if n in seen:
-            return print(False)
-
-        seen.add(n)
-        n = check_next(n)
+        return True
 
 
-happy_number(19)
+intervals = [Interval(0, 30), Interval(5, 10), Interval(15, 20)]
+
+solution = Interval(0, 0)
+print(solution.canAttendMeetings(intervals))
