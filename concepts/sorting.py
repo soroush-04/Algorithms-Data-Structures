@@ -139,3 +139,23 @@ def sort_counting(arr):
 
 
 print(sort_counting([2, 5, 5, 1, 14, 2]))
+
+
+# ----
+## Time: O(n log n)
+## Space: O(n)  | O(1) is also possible
+import heapq
+
+
+def sort_heap(arr):
+    heapq.heapify(arr)
+    n = len(arr)
+    sorted_arr = [0] * n
+
+    for i in range(n):
+        sorted_arr[i] = heapq.heappop(arr)
+
+    return sorted_arr
+
+
+print(sort_heap([2, 5, 5, 1, 14, 2]))
