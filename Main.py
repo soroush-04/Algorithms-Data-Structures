@@ -27,7 +27,7 @@ class Tree:
     def calculate_max_diameter(self):
         self.diameter = 0
 
-        def dfs(node):
+        def dfs(node: TreeNode):
             if not node:
                 return 0
 
