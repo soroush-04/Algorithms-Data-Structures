@@ -1,5 +1,5 @@
 """
-Jewels and Stones
+Subsets
 """
 
 from __future__ import annotations
@@ -7,13 +7,23 @@ from typing import List, Optional
 
 
 class Solution:
-    def numJewelsInStones(self, jewels: str, stones: str) -> int:
-        counter = 0
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        res, sol = [], []
 
-        j_set = set(i for i in jewels)
+        def backtrack(i):
+            if i == n:
+                res.append(sol[:])
+                return
 
-        for i in stones:
-            if i in j_set:
-                counter += 1
+            # don't pick nums[i]
+            backtrack(i + 1)
 
-        return counter
+            # pick nums[i]
+            sol.append(nums[i])
+            backtrack(i + 1)
+            sol.pop()
+
+        backtrack(0)
+
+        return res
