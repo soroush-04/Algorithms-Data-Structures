@@ -7,7 +7,11 @@ from typing import List, Optional
 
 
 class Solution:
-    def kthLargestNumber(self, nums: List[str], k: int) -> str:
-        nums.sort(key=lambda x: int(x))
+    def reverse_words(self, s: str) -> str:
+        words = s.split()
 
-        return nums[-k]
+        return " ".join(words[::-1])
+
+
+test = Solution()
+print(test.reverse_words(" hello dear boss "))
