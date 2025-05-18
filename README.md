@@ -17,6 +17,9 @@
   - Technique: Tree Traversal, Recursion | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/subtree.py)
 - **Balanced Binary Tree**
   - Technique: DFS, Height Calculation | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/balanced_binary_tree.py)
+- **Letter Combinations of a Phone Number**
+  - Technique: backtracking, string join | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/letters_phone_numer.py)
+
 
 
 
