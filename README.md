@@ -19,6 +19,8 @@
   - Technique: DFS, Height Calculation | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/balanced_binary_tree.py)
 - **Letter Combinations of a Phone Number**
   - Technique: backtracking, string join | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/letters_phone_numer.py)
+- **Permutations**
+  - Technique: backtracking | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/permutations.py)
 
 
 
@@ -62,6 +64,7 @@
 - Don’t forget to undo (backtrack) changes after recursive calls.
 - Recursion base case must be created accuractely.
 - Don't forget to call the backtracking function at the end!
+- Each for loop in a recursive callback function has its separate own state.
 
 ### Dynamic Programming
 - Check for fibonnaci patterns
