@@ -38,6 +38,9 @@
 ### Sliding Window
 - Consider using this technique when searching for specific subarrays or contiguous sequences.
 
+### Stack
+- You need to perform on current and previous index? Consider using stack for optimized performance. 
+
 ### Sorting
 - Merge Sort has guaranteed O(n log n) time complexity, which can be preferable when the worst case is a concern.
 
