@@ -21,6 +21,8 @@
   - Technique: backtracking, string join | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/letters_phone_numer.py)
 - **Permutations**
   - Technique: backtracking | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/permutations.py)
+- **Equal Row and Column Pairs**
+  - Technique: Hashmaps, Tuples, Matrix | [Code Link](https://github.com/soroush-04/Algorithms-DS/blob/main/favorites/equal_pairs.py)
 
 
 
@@ -37,6 +39,9 @@
 
 ### Sliding Window
 - Consider using this technique when searching for specific subarrays or contiguous sequences.
+
+### Hashmaps
+- Use tuples as keys if needed not the list.
 
 ### Stack
 - You need to perform on current and previous index? Consider using stack for optimized performance. 
